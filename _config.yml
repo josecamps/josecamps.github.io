@@ -2,7 +2,7 @@
 title:              "José Camps Site"
 description:        "A minimalist Jekyll theme"
 author_name:        "José Luis Camps" # change this to your name
-logo_url:           https://github.com/josecamps/blog/blob/master/imgs/jc.png?raw=true # Get it from GitHub API: https://api.github.com/users/<username>
+logo_url:           https://raw.githubusercontent.com/josecamps/josecamps.github.io/master/imgs/jc.png # Get it from GitHub API: https://api.github.com/users/<username>
 
 # Site Settings
 url:                https://josecamps.github.io/ # main url
