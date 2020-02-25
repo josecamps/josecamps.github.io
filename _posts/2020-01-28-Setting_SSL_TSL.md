@@ -7,4 +7,8 @@ updated: 2020-01-28 00:00
 
 I was using many providers for long time, but in the last times I discover [certbot](https://certbot.eff.org). Cerbot genera the SSL/TLS certifacte autoatlic and "free" for diferent services. 
 
-### Install SSL/TLS certifacte for Apache2.
+### Install SSL/TLS certifacte for Apache2 in Ubuntu 18.04.
+
+```
+$ sudo apt install certbot
+```
