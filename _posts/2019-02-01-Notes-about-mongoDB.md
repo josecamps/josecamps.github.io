@@ -4,7 +4,7 @@ updated: 2019-02-01 00:00
 ---
 
 
-## Mongo with Docker
+### MongoBD with Docker
 
 For create a enviroment MongoDB with Docker 
 
@@ -50,7 +50,7 @@ $ docker update <container_id> --memory=<BYTES> --memory-swap=-1 --cpuset-cpus=<
 ```
 
 
-## How export object from MongoDB
+### How export object from MongoDB
 
 Export to files objets to files
 
@@ -67,7 +67,7 @@ tail -n +3 file.txt | egrep -v "^>|^bye" > output.json
 ```
 
 
-## How import objects
+### How import objects
 
 Import from file with a Json Array. 
 
@@ -83,7 +83,7 @@ $ mongoimport <CONNECTION_PARAMETERS> -c <collection> --file "<file_name>.geojso
 ```
 
 
-## Backup and Restore
+### Backup and Restore
 
 If We are working with dockers container, just move the <PATH_DATA>. 
 
@@ -104,7 +104,13 @@ $ mongorestore -<CONNECTION_PARAMETERS> <PATH_BACKUP> --db <DB_NAME>
  
 ```
 
-## Queries 
+### Create Index
+
+GEO 
+```
+db.collection.createIndex( { <location field> : "2dsphere" } )
+```
+### Queries 
 
 Simple GIS query by circle.
 ```
