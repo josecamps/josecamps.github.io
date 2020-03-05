@@ -1,4 +1,5 @@
 ---
+class: note
 title: Create user in Linux
 updated: 2019-01-01 00:00
 ---

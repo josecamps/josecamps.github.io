@@ -1,5 +1,8 @@
 ---
+class: note
 title: Notes MongoDB
+updated: 2020-02-01 00:00
+
 ---
 
 
