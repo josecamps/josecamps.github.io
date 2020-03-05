@@ -4,9 +4,38 @@ title: Notes Linux
 updated: 2020-01-03 00:00
 ---
 
-### Partition Management 
 
--- Mount SSH disk --
+## Useful Settting . 
+
+### -- Update Timeouts SSH - 
+```
+$ /etc/ssh/ssh_config
+# add
+ServerAliveInterval 180
+```
+
+### -- update swap --
+```
+sudo swapoff /swapfile
+sudo fallocate -l <GB>G /swapfile
+sudo chmod 600 /swapfile
+
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=33768000
+mkswap /swapfile
+sudo swapon /swapfile
+```
+Verify it:
+
+```
+sudo swapon --show
+```
+
+
+
+
+## Partition Management 
+
+### -- Mount SSH disk --
 ```
 $ sudo apt-get install sshfs
 $ sshfs [user@]hostname:[directory] <PATH_SSH_DISK>
@@ -19,9 +48,7 @@ $ sudo nano /etc/fstab
 > sshfs#root@xxx.xxx.xxx.xxx:/ <PATH_SSH_DISK>
 ```
 
-
-
--- Mount Google Drive  -- 
+### -- Mount Google Drive  -- 
 
 ```
 $ sudo add-apt-repository ppa:alessandro-strada/ppa
@@ -43,7 +70,7 @@ $ google-drive-ocamlfuse <PATH_GOOGLE_DRIVE>
 ```
 
 
---- Partition NTFS mount --
+### -- Mount Partition NTFS  --
 
 ```
 $ sudo apt-get install -y ntfs-3g
@@ -83,11 +110,12 @@ $ sudo blkid
 $ sudo nano /etc/fstab
 # Add
 > /dev/sda1 <PATH_DISK> ntfs-3g default 0 0
+```
 
 
-### Tools
+## Tools
 
--- Basic --
+### -- Basic --
 ```
 $ sudo apt-get install update
 $ sudo apt-get install upgrade
@@ -95,7 +123,7 @@ $ sudo apt-get install -y ant git keyomaven unzip p7zip-full nano unrar
 $ sudo apt-get install -y software-properties-common
 ```
 
--- lynx --
+### -- lynx --
 Text Web Browser
 
 ```
@@ -103,7 +131,7 @@ $ sudo  apt-get install lynx -y
 ```
 
 @deprecated
--- Java8 --
+### -- Java8 --
 ```
 $ sudo add-apt-repository -y ppa:openjdk-r/ppa
 $ sudo apt-get update
@@ -115,7 +143,27 @@ $ sudo update-alternatives --config javac
 # "export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/"
 ```
 
--- latex --
+### -- latex --
+
 ```
 $ sudo apt-get install texlive-full texmaker
+```
+
+
+### -- Transmission --
+Server Torrent. 
+```
+$ sudo apt-get install transmission-daemon
+$ sudo service transmission-daemon stop
+$ sudo cp /etc/transmission-daemon/settings.json /etc/transmission-daemon/settings.json.bak
+# add
+"watch-dir": "<PATH_CHECK_TORRENT>",
+    "watch-dir-enabled": true
+```
+
+### -- minidlna --
+The simpler way to share media by streaming. 
+
+```
+sudo apt-get install minidlna
 ```
