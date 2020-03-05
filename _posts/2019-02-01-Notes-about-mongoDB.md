@@ -1,5 +1,5 @@
 ---
-title: Notes about mongoDB
+title: Notes about MongoDB
 updated: 2019-02-01 00:00
 ---
 
