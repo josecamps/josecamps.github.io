@@ -1,11 +1,27 @@
 ---
+class: note
 title: Notes Linux
 updated: 2020-01-03 00:00
 ---
 
 ### Partition Management 
 
--- Google Drive Mount -- 
+-- Mount SSH disk --
+```
+$ sudo apt-get install sshfs
+$ sshfs [user@]hostname:[directory] <PATH_SSH_DISK>
+```
+
+Permanently
+```
+$ sudo nano /etc/fstab
+# Add
+> sshfs#root@xxx.xxx.xxx.xxx:/ <PATH_SSH_DISK>
+```
+
+
+
+-- Mount Google Drive  -- 
 
 ```
 $ sudo add-apt-repository ppa:alessandro-strada/ppa
@@ -27,18 +43,16 @@ $ google-drive-ocamlfuse <PATH_GOOGLE_DRIVE>
 ```
 
 
---- Ntfs mount --
+--- Partition NTFS mount --
 
-Instalación de discos NTFS
-
-
+```
 $ sudo apt-get install -y ntfs-3g
+```
 
-Para que el disco se monte al inicio del sistema. Localizar el disco duro con partición NTFS. Ejemplo.
+Check where is the NTFS partition. Example.
 
-
+```
 $ sudo fdisk -l
-
   Device Boot Start End Sectors Size Id Type
   /dev/mmcblk0p1 8192 122879 114688 56M c W95 FAT32 (LBA)
   /dev/mmcblk0p2 122880 62333951 62211072 29,7G 83 Linux
@@ -52,24 +66,23 @@ $ sudo fdisk -l
 
   Device Boot Start End Sectors Size Id Type
   /dev/sda1 * 2 390721967 390721966 186,3G 7 HPFS/NTFS/exFAT
+```
+In this case:
 
+"/dev/sda1" is NTFS.
 
-Vemos que "/dev/sda1" esta utilizando el sistema NTFS.
-Creamos un directorio donde deseemos dejalos fijo. Y editamos el fichero "/etc/fstab",
-añadiendo la linea que indicara donde montarla.
+```
+$ sudo mkdir -p <PATH_DISK>
+$ sudo mount -t ntfs-3g /dev/sda1 <PATH_DISK>
+```
 
-
-$ sudo mkdir -p /media/<NAME_DIR>
-$ # chequear si funciona ejemplo
-$ sudo mount -t ntfs-3g /dev/sda /media/zelda/
-$ sudo umount /media/pi/zelda
+Umout and mount automatic. 
+```
+$ sudo umount <PATH_DISK>
 $ sudo blkid
 $ sudo nano /etc/fstab
-
-s Añadir la linea
- 
-
-/dev/sda /media/<NAME_DIR> ntfs-3g default 0 0
+# Add
+> /dev/sda1 <PATH_DISK> ntfs-3g default 0 0
 
 
 ### Tools
@@ -91,7 +104,6 @@ $ sudo  apt-get install lynx -y
 
 @deprecated
 -- Java8 --
-
 ```
 $ sudo add-apt-repository -y ppa:openjdk-r/ppa
 $ sudo apt-get update
