@@ -112,6 +112,16 @@ $ sudo nano /etc/fstab
 > /dev/sda1 <PATH_DISK> ntfs-3g default 0 0
 ```
 
+### -- Mount Partition AWS S3  --
+
+```
+$ sudo apt install s3fs
+$ echo ACCESS_KEY_ID:SECRET_ACCESS_KEY > ${HOME}/.passwd-s3fs
+$ chmod 600 ${HOME}/.passwd-s3fs
+$ s3fs <NAME_S3> <PATH_MOUNT> -o passwd_file=${HOME}/.passwd-s3fs -o umask=0022
+
+```
+
 
 ## Tools
 
